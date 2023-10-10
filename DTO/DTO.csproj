@@ -67,6 +67,7 @@
     <Compile Include="AddressDTO.cs" />
     <Compile Include="CategoryDTO.cs" />
     <Compile Include="FavDTO.cs" />
+    <Compile Include="GeneralDTO.cs" />
     <Compile Include="HomeLayoutDTO.cs" />
     <Compile Include="MetaDTO.cs" />
     <Compile Include="PostDTO.cs" />

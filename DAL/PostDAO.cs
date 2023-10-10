@@ -82,8 +82,13 @@ namespace DAL
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+        }
+
+        public List<PostDTO> GetHotNews()
+        {
+            return this.GetPosts().Take(5).ToList();
         }
 
         public PostDTO GetPostWithID(int iD)

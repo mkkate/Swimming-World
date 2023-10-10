@@ -11,13 +11,17 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         LayoutBLL layoutbll = new LayoutBLL();
+        GeneralBLL generalbll = new GeneralBLL();
         // GET: Home
         public ActionResult Index()
         {
             HomeLayoutDTO layoutdto = new HomeLayoutDTO();
             layoutdto = layoutbll.GetLayoutData();
             ViewData["LayoutDTO"] = layoutdto;
-            return View();
+
+            GeneralDTO generaldto = new GeneralDTO();
+            generaldto = generalbll.GetAllPosts();
+            return View(generaldto);
         }
     }
 }

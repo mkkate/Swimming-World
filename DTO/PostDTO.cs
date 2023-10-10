@@ -39,5 +39,8 @@ namespace DTO
 
         // za razdvajanje add i update pogleda (view)
         public bool isUpdate { get; set; } = false;
+
+        public string ImagePath { get; set; }
+        public int CommentCount { get; set; }
     }
 }

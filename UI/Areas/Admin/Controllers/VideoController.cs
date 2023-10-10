@@ -30,7 +30,8 @@ namespace UI.Areas.Admin.Controllers
                 string path = model.OriginalVideoPath.Substring(32);    // brise prva 32 karaktera URL-a jer su uvek isti
                 string mergelink = "https://www.youtube.com/embed/";
                 mergelink += path;
-                model.VideoPath = String.Format(@"< iframe width = ""300"" height = ""200"" src = ""{0}"" title = ""YouTube video player"" frameborder = ""0""  allowfullscreen ></ iframe >", mergelink);
+                model.VideoPath = String.Format(@"<iframe width=""300"" height=""200"" src=""{0}"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" allowfullscreen></iframe>", mergelink);
+               // model.VideoPath = String.Format(@"<iframe width = ""300"" height = ""200"" src = ""{0}"" title = ""YouTube video player"" frameborder = ""0""  allowfullscreen ></iframe>", mergelink);
                 if (bll.AddVideo(model))
                 {
                     ViewBag.ProcessState = General.Messages.AddSuccess;
