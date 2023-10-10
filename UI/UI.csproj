@@ -424,6 +424,7 @@
     <Content Include="Areas\Admin\Content\JS\responsive.bootstrap4.min.js" />
     <Content Include="Areas\Admin\Content\JS\sweetalert2.min.js" />
     <Content Include="Areas\Admin\Content\tempimage\logo.png" />
+    <Content Include="Areas\Admin\Content\tempimage\pool.jpg" />
     <Content Include="Areas\Admin\Content\tempimage\user1-128x128.jpg" />
     <Content Include="Areas\Admin\Content\webfonts\fa-brands-400.svg" />
     <Content Include="Areas\Admin\Content\webfonts\fa-regular-400.svg" />
