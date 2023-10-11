@@ -26,7 +26,7 @@ namespace DAL
 
         public List<VideoDTO> GetVideos()
         {
-            List<Video> list = db.Videos.Where(x => x.isDeleted == false).OrderBy(x => x.AddDate).ToList();
+            List<Video> list = db.Videos.Where(x => x.isDeleted == false).OrderByDescending(x => x.AddDate).ToList();
             List<VideoDTO> dtolist = new List<VideoDTO>();
             foreach (var item in list)
             {

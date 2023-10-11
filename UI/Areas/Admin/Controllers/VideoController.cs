@@ -21,17 +21,9 @@ namespace UI.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult AddVideo(VideoDTO model)
         {
-
-            //< iframe width = "560" height = "315" src = "https://www.youtube.com/embed/1tPVVDEDGtE?si=99DCcfmUW4htEkGH" title = "YouTube video player" frameborder = "0"  allowfullscreen ></ iframe >
-            //https://www.youtube.com/watch?v=1tPVVDEDGtE&ab_channel=MilanJovanovi%C4%87    //32chars
-
             if (ModelState.IsValid)
             {
-                string path = model.OriginalVideoPath.Substring(32);    // brise prva 32 karaktera URL-a jer su uvek isti
-                string mergelink = "https://www.youtube.com/embed/";
-                mergelink += path;
-                model.VideoPath = String.Format(@"<iframe width=""300"" height=""200"" src=""{0}"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" allowfullscreen></iframe>", mergelink);
-               // model.VideoPath = String.Format(@"<iframe width = ""300"" height = ""200"" src = ""{0}"" title = ""YouTube video player"" frameborder = ""0""  allowfullscreen ></iframe>", mergelink);
+                MergeWatchAndEmbed(model);
                 if (bll.AddVideo(model))
                 {
                     ViewBag.ProcessState = General.Messages.AddSuccess;
@@ -49,6 +41,15 @@ namespace UI.Areas.Admin.Controllers
             }
             return View(model);
         }
+
+        private void MergeWatchAndEmbed(VideoDTO model)
+        {
+            string path = model.OriginalVideoPath.Substring(32);    // brise prva 32 karaktera URL-a jer su uvek isti
+            int ampersend = path.IndexOf("&");  // nakon & su naziv kanala i slicno, i taj zapis je razlicit kod embed i watch
+            string mergelink = "https://www.youtube.com/embed/" + path.Substring(0, ampersend);
+            model.VideoPath = String.Format(@"<iframe width=""300"" height=""200"" src=""{0}"" frameborder=""0"" allowfullscreen></iframe>", mergelink);
+        }
+
         public ActionResult VideoList()
         {
             List<VideoDTO> dtolist = new List<VideoDTO>();
@@ -67,10 +68,7 @@ namespace UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = model.OriginalVideoPath.Substring(32);    // brise prva 32 karaktera URL-a jer su uvek isti
-                string mergelink = "https://www.youtube.com/embed/";
-                mergelink += path;
-                model.VideoPath = String.Format(@"< iframe width = ""300"" height = ""200"" src = ""{0}"" title = ""YouTube video player"" frameborder = ""0""  allowfullscreen ></ iframe >", mergelink);
+                this.MergeWatchAndEmbed(model);
                 if (bll.UpdateVideo(model))
                 {
                     ViewBag.ProcessState = General.Messages.UpdateSuccess;

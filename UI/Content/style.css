@@ -14,10 +14,11 @@
   padding: 0; }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  background-color: #222627;
-  color: #a6a6a6; }
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    background-color: #071e26;
+    color: #a6a6a6;
+}
 
 h1,
 h2,
@@ -1741,10 +1742,11 @@ input:focus {
   width: 100%; }
 
 .footer-area {
-  position: relative;
-  z-index: 1;
-  background-color: #191c1d;
-  padding-top: 70px; }
+    position: relative;
+    z-index: 1;
+    background-color: #040f13;
+    padding-top: 70px;
+}
   .footer-area .footer-widget {
     position: relative;
     z-index: 1; }

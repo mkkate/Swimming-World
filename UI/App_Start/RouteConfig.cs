@@ -14,6 +14,24 @@ namespace UI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Home",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
+                );
+
+            routes.MapRoute(
+                name: "Category",
+                url: "{CategoryName}",
+                defaults: new { controller = "Home", action = "CategoryPostList", CategoryName = UrlParameter.Optional }
+                );
+
+            routes.MapRoute(
+                name: "PostDetail",
+                url: "{CategoryName}/{SeoLink}/{id}",
+                defaults: new { controller = "Home", action = "PostDetail", CategoryName = UrlParameter.Optional, SeoLink = UrlParameter.Optional, id = UrlParameter.Optional,  }
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -19,5 +19,13 @@ namespace BLL
             dto.Videos = dao.GetVideos();
             return dto;
         }
+
+        public GeneralDTO GetPostDetailPageItemsWithID(int id)
+        {
+            GeneralDTO dto = new GeneralDTO();
+            dto.MostViewedPost = dao.GetMostViewedPosts();
+            dto.PostDetail = dao.GetPostDetail(id);
+            return dto; 
+        }
     }
 }

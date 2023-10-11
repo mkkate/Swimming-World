@@ -14,5 +14,9 @@ namespace DTO
         //public List<PostDTO> BreakingPost { get; set; }
         public List<VideoDTO> Videos { get; set; }
         public PostDTO PostDetail { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
+        public int PostID { get; set; }
     }
 }

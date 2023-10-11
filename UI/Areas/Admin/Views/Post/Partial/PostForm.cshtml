@@ -71,7 +71,7 @@
                 <tbody>
                     @foreach (var item in Model.PostImages)
                     {
-                        <tr id="a_@Model.ID">
+                        <tr id="a_@item.ID">
                             <td>
                                 <img src="~/Areas/Admin/Content/PostImage/@item.ImagePath" width="60" height="40" />
                             </td>

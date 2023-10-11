@@ -88,7 +88,44 @@ namespace DAL
 
         public List<PostDTO> GetHotNews()
         {
-            return this.GetPosts().Take(5).ToList();
+            var postlist = (from p in db.Posts.Where(x => x.isDeleted == false)
+                            join c in db.Categories on p.CategoryID equals c.ID
+                            select new
+                            {
+                                ID = p.ID,
+                                Title = p.Title,
+                                CategoryName = c.CategoryName,
+                                AddDate = p.AddDate,
+                                SeoLink = p.SeoLink
+                            }).OrderByDescending(x => x.AddDate).Take(5).ToList();
+            List<PostDTO> dtolist = new List<PostDTO>();
+            foreach (var item in postlist)
+            {
+                PostDTO dto = new PostDTO();
+                dto.ID = item.ID;
+                dto.Title = item.Title;
+                dto.CategoryName = item.CategoryName;
+                dto.AddDate = item.AddDate;
+                dto.SeoLink = item.SeoLink;
+                dtolist.Add(dto);
+            }
+            return dtolist;
+        }
+
+        public void AddComment(Comment comment, string name)
+        {
+            try
+            {
+                var result = db.T_User.First(x =>  x.NameSurname == comment.NameSurname);
+                comment.LastUpdateUserID = result.ID;
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public PostDTO GetPostWithID(int iD)

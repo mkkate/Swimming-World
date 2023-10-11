@@ -64,6 +64,20 @@ namespace BLL
             }
         }
 
+        public bool AddComment(GeneralDTO model)
+        {
+            Comment comment = new Comment();
+            comment.PostID = model.PostID;
+            comment.AddDate = DateTime.Now;
+            comment.CommentContent = model.Message;
+            comment.Email = model.Email;
+            comment.NameSurname = model.Name;
+            comment.LastUpdateDate = DateTime.Now;
+            comment.LastUpdateUserID = 1;   // jer u db ne moze da bude null
+            dao.AddComment(comment);
+            return true;
+        }
+
         void SavePostImage(List<PostImageDTO> list, int PostID)
         {
             List<PostImage> imagelist = new List<PostImage>();
